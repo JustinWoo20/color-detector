@@ -1,4 +1,3 @@
-# TODO 1: Set up flask server
 # TODO 2: Use bootstrap to customize layout
 # TODO 3: Upload an image functionality
 # TODO 4: Use Numpy to detect colors
