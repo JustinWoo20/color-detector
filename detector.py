@@ -15,8 +15,18 @@ def top_n_colors(i, n):
 
 image = c.imread('static/test.jpg') #Default is BGR
 image = c.cvtColor(image, c.COLOR_BGR2RGB) #Convert to RGB
-colors, top_counts = top_n_colors(i=image, n=10)
+print(image.shape)
+height, width, channels = image.shape
+total_pixels = height * width
 
-print(colors)
-print(top_counts)
+colors, top_counts = top_n_colors(i=image, n=30)
 
+colors_flip = np.flipud(colors)
+# print(colors_flip)
+
+top_counts_flip = np.flip(top_counts)
+print(top_counts_flip)
+
+for count in top_counts_flip:
+    pct_of_img = round((count / total_pixels), 4) * 100
+    print(pct_of_img)

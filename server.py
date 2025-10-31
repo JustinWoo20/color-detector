@@ -4,7 +4,7 @@
 # TODO 5: Output a data in an easy to read formate
 
 from flask import Flask, render_template
-import numpy as np
+
 
 app = Flask(__name__)
 
