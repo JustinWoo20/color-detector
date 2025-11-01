@@ -6,20 +6,82 @@
     <title>Color Detector</title>
 </head>
 <body>
-<div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="https://play-lh.googleusercontent.com/jDUYHXIyXVY15XITM2Ol21EiSDOv8ArBasSJUwNTDJ866tP_5nN__58Y4_lqGGsl5qM"
-         alt="" width="72" height="57">
-    <h1 class="display-5 fw-bold text-body-emphasis">Color Detector</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Simply upload an image and Justin's super fancy color detector will return the top 10
-        most used colors in the image.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Upload Image</button>
-        </div>
+    <div id="top-bar">
+        <h1>Color Extractor</h1>
     </div>
-</div>
-<div>
-    {% for
-</div>
+    <section id="app" class="color-selector">
+        <div class="container">
+            <div class="docs-inner">
+                <h2 class="title">Demo</h2>
+                <div class="block">
+
+    <img src="../static/test.jpg" width="100%" alt="test image" />
+
+	<table class="table">
+        <thead>
+		    <tr><th>Color</th><th>Color Code</th><th>Percentage</th></tr>
+        </thead>
+        <tbody>
+		    <tr><td style="background-color:#f0a800"></td><td>#f0a800</td><td>0.221667</td></tr>
+		    <tr><td style="background-color:#606030"></td><td>#606030</td><td>0.174286</td></tr>
+		    <tr><td style="background-color:#d87800"></td><td>#d87800</td><td>0.155595</td></tr>
+		    <tr><td style="background-color:#484818"></td><td>#484818</td><td>0.097857</td></tr>
+		    <tr><td style="background-color:#901818"></td><td>#901818</td><td>0.076905</td></tr>
+		    <tr><td style="background-color:#301818"></td><td>#301818</td><td>0.049107</td></tr>
+		    <tr><td style="background-color:#787848"></td><td>#787848</td><td>0.048929</td></tr>
+		    <tr><td style="background-color:#c03018"></td><td>#c03018</td><td>0.031667</td></tr>
+		    <tr><td style="background-color:#d86018"></td><td>#d86018</td><td>0.022738</td></tr>
+		    <tr><td style="background-color:#181800"></td><td>#181800</td><td>0.022083</td></tr>
+        </tbody>
+	</table>
+
+	<form action="/color_extract#demo" method="post" enctype="multipart/form-data">
+		<fieldset class="information">
+		<div>
+		<label for="imgFile">File to upload: <input type="file" name="imgFile" id="imgFile"  class="form-control"/></label>
+		</div>
+		<div>
+		<label for="num_results">Number of colors:</label>
+			<input type="text" name="num_results" id="num_results" value="10" class="form-control"/>
+		</div>
+		<div>
+		<label for="delta">delta:</label>
+			<input type="text" name="delta" id="delta" value="24" class="form-control"/>
+			(1-255)
+		</div>
+		<div class="radio">
+         <div class="form-group row">
+    <label class="col-sm-3">Reduce Brightness:</label>
+            <label>
+			<input type="radio" name="reduce_brightness" checked="checked" value="true" />Yes
+            <label>
+            </label>
+			<input type="radio" name="reduce_brightness"  value="false" />No
+            </label>
+		</div>
+		</div>
+		<div class="radio">
+         <div class="form-group row">
+    <label class="col-sm-3">Reduce gradient:</label>
+            <label>
+			<input type="radio" name="reduce_gradient" checked="checked" value="true" />Yes
+            </label>
+            <label>
+			<input type="radio" name="reduce_gradient"  value="false" />No
+            </label>
+		</div>
+		</div>
+		</fieldset>
+		<div class="buttons">
+			<input type="submit" name="submit" value="Run" />
+			<input type="hidden" name="action" value="run" />
+			<input type="hidden" name="ext" value="jpg" />
+			<input type="hidden" name="rand" value="" />
+		</div>
+	</form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

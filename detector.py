@@ -12,7 +12,7 @@ def top_n_colors(i, n):
     else:
         unqc,C = np.unique(i.reshape(-1, i.shape[-1]), axis=0, return_counts=True)
         topNidx = np.argpartition(C, -n)[-n:]
-    return unqc[topNidx], C[topNidx]
+        return unqc[topNidx], C[topNidx]
 
 
 image = c.imread('static/test.jpg') #Default is BGR
@@ -21,7 +21,7 @@ image = c.cvtColor(image, c.COLOR_BGR2RGB) #Convert to RGB
 height, width, channels = image.shape
 total_pixels = height * width
 
-colors, top_counts = top_n_colors(i=image, n=30)
+colors, top_counts = top_n_colors(i=image, n=5)
 
 colors_flip = np.flipud(colors) #flip RGB values to get most occuring first
 
@@ -33,5 +33,6 @@ print(rgb_values)
 
 # Do same thing for count values
 top_counts_list = top_counts_flip.tolist()
-print(top_counts_list)
+pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
+print(pct_of_img)
 
