@@ -32,6 +32,6 @@ rgb_values = [tuple(color) for color in colors_flip]
 print(rgb_values)
 
 # Do same thing for count values
-for count in top_counts_flip:
-    pct_of_img = round((count / total_pixels), 4) * 100
-    count_list.append(pct_of_img)
+top_counts_list = top_counts_flip.tolist()
+print(top_counts_list)
+
