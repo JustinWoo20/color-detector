@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+
+#top-bar {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, cadetblue, rgb(139, 90, 0));
+    height: 100px
+}
+h1 {
+    text-align: center;
+    font-size: 56px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+#large-container {
+   margin: 30px; 
+   background-color: gray;
+}
+
+.demo {
+    text-align: center;
+    font-size: 48px;
+}

@@ -1,38 +1,34 @@
-# Put for loop in count
-
 import numpy as np
-import cv2 as c
-import matplotlib.pyplot as plt
 
-def top_n_colors(i, n):
-    # Color detector function
-    if i is None:
-        return 'No image detected'
+class ColorDetector:
+    def __init__(self, image, n):
+        self.image = image
+        self.n = n
+        self.colors, self.count = self.top_n_colors(i=self.image, n=self.n)
+        self.rgb, self.pct = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
 
-    else:
-        unqc,C = np.unique(i.reshape(-1, i.shape[-1]), axis=0, return_counts=True)
-        topNidx = np.argpartition(C, -n)[-n:]
-        return unqc[topNidx], C[topNidx]
+    def top_n_colors(self, i, n):
+        # Color detector function
+        if i is None:
+            return 'No image detected'
+        else:
+            unqcolor, C = np.unique(i.reshape(-1, i.shape[-1]), axis=0, return_counts=True)
+            topNidx = np.argpartition(C, -n)[-n:]
+            return unqcolor[topNidx], C[topNidx]
 
+    def sort_colors(self, i, colors, count):
+        height, width, channels = i.shape
+        total_pixels = height * width
 
-image = c.imread('static/test.jpg') #Default is BGR
-image = c.cvtColor(image, c.COLOR_BGR2RGB) #Convert to RGB
-# print(image.shape)
-height, width, channels = image.shape
-total_pixels = height * width
+        colors_flip = np.flipud(colors)  # flip RGB values to get most occuring first
+        top_counts_flip = np.flip(count)  # flip total counts to get descending order
 
-colors, top_counts = top_n_colors(i=image, n=5)
+        colors_flip = colors_flip.tolist()
+        rgb_values = [tuple(color) for color in colors_flip] #Create tuple list of RGB values
 
-colors_flip = np.flipud(colors) #flip RGB values to get most occuring first
+        # Do same thing for count values
+        top_counts_list = top_counts_flip.tolist()
+        pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
+        return rgb_values, pct_of_img
 
-top_counts_flip = np.flip(top_counts) #flip total counts to get descending order
-
-colors_flip = colors_flip.tolist()
-rgb_values = [tuple(color) for color in colors_flip]
-print(rgb_values)
-
-# Do same thing for count values
-top_counts_list = top_counts_flip.tolist()
-pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
-print(pct_of_img)
 

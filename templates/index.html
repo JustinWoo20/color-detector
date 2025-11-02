@@ -2,20 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <title>Color Detector</title>
 </head>
 <body>
-    <div id="top-bar">
-        <h1>Color Extractor</h1>
-    </div>
-    <section id="app" class="color-selector">
-        <div class="container">
-            <div class="docs-inner">
-                <h2 class="title">Demo</h2>
-                <div class="block">
-
-    <img src="../static/test.jpg" width="100%" alt="test image" />
+	<header id="top-bar">
+		<h1 class="title">Color Detector</h1>
+	</header>
+	<section id="app">
+		<div id="large-container">
+			<div id="image-container">
+				<h2 class="demo">Demo</h2>
+				<img src="../static/test.jpg" width="100%" alt="test image" id="ex-img"/>
+			</div>
+			<table class="table">
+				<thead>
+					<tr><th>Color</th><th>Color Code</th><th>Percentage</th></tr>
+					/*Jinja goes here*/
+				</thead>
+			</table>
+		</div>
+	</section>
 
 	<table class="table">
         <thead>
