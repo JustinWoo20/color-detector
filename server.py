@@ -1,5 +1,4 @@
 # TODO 3: Upload an image functionality
-# TODO 4: Use Numpy to detect colors
 # TODO 5: Output a data in an easy to read format
 # TODO 6: Use render template to add colors to website
 
