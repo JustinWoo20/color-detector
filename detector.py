@@ -27,16 +27,14 @@ class ColorDetector:
         top_counts_flip = np.flip(count)  # flip total counts to get descending order
 
         colors_flip = colors_flip.tolist()
-        print(colors_flip)
-        rgb_values = [color for color in colors_flip] #Create tuple list of RGB values
-        hex_code = [rgb2hex.rgb2hex(rgb) for rgb in rgb_values]
+        hex_code = [rgb2hex.rgb2hex(rgb) for rgb in colors_flip]
 
         # Do same thing for count values
         top_counts_list = top_counts_flip.tolist()
         pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
         return hex_code, pct_of_img
 
-test = ColorDetector(image=cv2.imread('static/test.jpg'), n=10)
+test = ColorDetector(image=cv2.imread('static/test_2.jpg'), n=10)
 print(test.final_hex)
 print(test.pct)
 
