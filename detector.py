@@ -8,7 +8,7 @@ class ColorDetector:
         self.image = image
         self.n = n
         self.colors, self.count = self.top_n_colors(i=self.image, n=self.n)
-        self.final_hex, self.pct = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
+        self.color_data = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
 
     def top_n_colors(self, i, n):
         # Color detector function
@@ -22,20 +22,24 @@ class ColorDetector:
     def sort_colors(self, i, colors, count):
         height, width, channels = i.shape
         total_pixels = height * width
+        # Flip for descending order
+        colors_flip = np.flipud(colors)
+        top_counts_flip = np.flip(count)
 
-        colors_flip = np.flipud(colors)  # flip RGB values to get most occuring first
-        top_counts_flip = np.flip(count)  # flip total counts to get descending order
-
+        #Convert to lists
         colors_flip = colors_flip.tolist()
         hex_code = [rgb2hex.rgb2hex(rgb) for rgb in colors_flip]
-
-        # Do same thing for count values
         top_counts_list = top_counts_flip.tolist()
         pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
-        return hex_code, pct_of_img
+
+        #Put everything together into 1 dictionary
+        color_data = [
+            {'hex': hex_code[i], 'percentage': pct_of_img[i]}
+            for i in range(len(hex_code))
+        ]
+        return color_data
 
 test = ColorDetector(image=cv2.imread('static/test_2.jpg'), n=10)
-print(test.final_hex)
-print(test.pct)
+print(test.color_data)
 
 
