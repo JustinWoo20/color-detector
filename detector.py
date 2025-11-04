@@ -27,14 +27,18 @@ class ColorDetector:
         top_counts_flip = np.flip(count)
 
         #Convert to lists
+        #RGB
         colors_flip = colors_flip.tolist()
+        print(colors_flip)
+        #Color Hex codes
         hex_code = [rgb2hex.rgb2hex(rgb) for rgb in colors_flip]
+        #Amount of color
         top_counts_list = top_counts_flip.tolist()
         pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
 
         #Put everything together into 1 dictionary
         color_data = [
-            {'hex': hex_code[i], 'percentage': pct_of_img[i]}
+            {'rgb': colors_flip[i], 'hex': hex_code[i], 'percentage': pct_of_img[i]}
             for i in range(len(hex_code))
         ]
         return color_data

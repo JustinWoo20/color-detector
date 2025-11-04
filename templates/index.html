@@ -29,8 +29,10 @@
 		    <tr><th>Color</th><th>Color Code</th><th>Percentage</th></tr>
         </thead>
         <tbody>
-            {% for
-		    <tr><td style="background-color:#606030"></td><td>#f0a800</td><td>0.221667</td></tr>
+            {% for color in color_data %}
+		    <tr><td style="background-color:{{ color['hex'] }}"></td><td>{{color['hex']}}</td><td>{{color['percentage']}}</td></tr>
+            {% endfor %}
+        <tr><td style="background-color:#00c0ff"></td><td>#00c0ff</td><td>.25</td></tr>
         </tbody>
 	</table>
 

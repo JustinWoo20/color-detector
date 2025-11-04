@@ -11,8 +11,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     ex_img = ColorDetector(image=c.imread('static/test.jpg'), n=10)
-    return render_template('index.html', image=ex_img, hex_code=ex_img.final_hex,
-                           percentage=ex_img.pct)
+    return render_template('index.html', color_data=ex_img.color_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
