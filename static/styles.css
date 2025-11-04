@@ -18,11 +18,51 @@ h1 {
 }
 
 #large-container {
-   margin: 30px; 
-   background-color: gray;
+   margin-top: 200px;
+   margin-left: 12vw;
+   margin-right: 12vw;
+   margin-bottom: 200px; 
+   background-color: rgb(197, 180, 180);
 }
 
 .demo {
     text-align: center;
     font-size: 48px;
+}
+
+#ex-img {
+    width: 50vw;
+    display: block;
+    margin: auto;
+    padding-bottom: 75px;
+}
+
+.table {
+    width: 40vw;
+    display: block;
+    border-collapse: separate;
+    border-spacing: 20px 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table thead {
+    font-size: 30px;
+}
+
+.table tbody {
+    font-size: 20px;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.col-sm-3 {
+    font-size: 20px;
+}
+
+fieldset.information > div {
+    margin-bottom: 1rem;
 }

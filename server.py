@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    ex_img = ColorDetector(image=c.imread('static/test.jpg'), n=10)
+    ex_img = ColorDetector(image=c.imread('static/test_2.jpg'), n=10)
     return render_template('index.html', color_data=ex_img.color_data)
 
 if __name__ == '__main__':

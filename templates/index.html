@@ -10,19 +10,11 @@
 		<h1 class="title">Color Detector</h1>
 	</header>
 	<section id="app">
-		<div id="large-container">
-			<div id="image-container">
-				<h2 class="demo">Demo</h2>
-				<img src="../static/test.jpg" width="100%" alt="test image" id="ex-img"/>
-			</div>
-			<table class="table">
-				<thead>
-					<tr><th>Color</th><th>Color Code</th><th>Percentage</th></tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+	<div id="large-container">
+		<div id="image-container">
+			<h2 class="demo">Demo</h2>
+			<img src="../static/test_2.jpg" width="100%" alt="test image" id="ex-img"/>
 		</div>
-	</section>
 
 	<table class="table">
         <thead>
@@ -32,21 +24,20 @@
             {% for color in color_data %}
 		    <tr><td style="background-color:{{ color['hex'] }}"></td><td>{{color['hex']}}</td><td>{{color['percentage']}}</td></tr>
             {% endfor %}
-        <tr><td style="background-color:#00c0ff"></td><td>#00c0ff</td><td>.25</td></tr>
         </tbody>
 	</table>
 
 	<form action="/color_extract#demo" method="post" enctype="multipart/form-data">
 		<fieldset class="information">
 		<div>
-		<label for="imgFile">File to upload: <input type="file" name="imgFile" id="imgFile"  class="form-control"/></label>
+		<label class="label" for="imgFile">File to upload: <input type="file" name="imgFile" id="imgFile"  class="form-control"/></label>
 		</div>
 		<div>
-		<label for="num_results">Number of colors:</label>
+		<label class="label" for="num_results">Number of colors:</label>
 			<input type="text" name="num_results" id="num_results" value="10" class="form-control"/>
 		</div>
 		<div>
-		<label for="delta">delta:</label>
+		<label class="label" for="delta">delta:</label>
 			<input type="text" name="delta" id="delta" value="24" class="form-control"/>
 			(1-255)
 		</div>
@@ -80,9 +71,7 @@
 			<input type="hidden" name="rand" value="" />
 		</div>
 	</form>
-                </div>
-            </div>
-        </div>
+    </div>
     </section>
 </body>
 </html>
