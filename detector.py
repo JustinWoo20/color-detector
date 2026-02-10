@@ -1,4 +1,4 @@
-# import cv2
+import cv2
 import numpy as np
 import matplotlib as plt
 import rgb2hex
@@ -9,7 +9,7 @@ class ColorDetector:
         self.n = n
         self.rgb_colors, self.count = self.top_n_colors(i=self.image, n=self.n)
         self.hex_colors = self.convert_to_hex(colors=self.rgb_colors)
-       # self.color_data = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
+        self.color_dict = self.color_frequency(i=self.image, counts=self.count, hex_c=self.hex_colors)
 
     def top_n_colors(self, i, n):
         # Color detector function
@@ -28,11 +28,16 @@ class ColorDetector:
     def convert_to_hex(self, colors):
         # convert rgb values to color hexcodes
         color_list = colors.tolist()
-        print(color_list)
         hex_colors = [rgb2hex.rgb2hex(rgb) for rgb in color_list]
         return hex_colors
 
+    def color_frequency(self, i, counts, hex_c):
+        total_pixels = i.shape[0] * i.shape[1]
+        frequency = [c / total_pixels for c in counts]
+        color_freq = dict(zip(hex_c, frequency))
+        color_freq = {color: float(freq) for color, freq in color_freq.items()}
+        return color_freq
+
 test = ColorDetector(image=cv2.imread('static/img/colors_test.png', cv2.IMREAD_COLOR_RGB), n=5)
-print(test.hex_colors)
 
 
