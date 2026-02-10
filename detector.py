@@ -1,4 +1,4 @@
-import cv2
+# import cv2
 import numpy as np
 import matplotlib as plt
 import rgb2hex
@@ -7,43 +7,32 @@ class ColorDetector:
     def __init__(self, image, n):
         self.image = image
         self.n = n
-        self.colors, self.count = self.top_n_colors(i=self.image, n=self.n)
-        self.color_data = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
+        self.rgb_colors, self.count = self.top_n_colors(i=self.image, n=self.n)
+        self.hex_colors = self.convert_to_hex(colors=self.rgb_colors)
+       # self.color_data = self.sort_colors(i=self.image, colors=self.colors, count=self.count)
 
     def top_n_colors(self, i, n):
         # Color detector function
         if i is None:
             return 'No image detected'
         else:
+            # Find unique colors
             unqcolor, C = np.unique(i.reshape(-1, i.shape[-1]), axis=0, return_counts=True)
+            # Find top n colors
             topNidx = np.argpartition(C, -n)[-n:]
-            return unqcolor[topNidx], C[topNidx]
+            # Sort in descending order
+            topN_sorted = topNidx[np.argsort(C[topNidx])[::-1]]
 
-    def sort_colors(self, i, colors, count):
-        height, width, channels = i.shape
-        total_pixels = height * width
-        # Flip for descending order
-        colors_flip = np.flipud(colors)
-        top_counts_flip = np.flip(count)
+            return unqcolor[topN_sorted], C[topN_sorted]
 
-        #Convert to lists
-        #RGB
-        colors_flip = colors_flip.tolist()
-        print(colors_flip)
-        #Color Hex codes
-        hex_code = [rgb2hex.rgb2hex(rgb) for rgb in colors_flip]
-        #Amount of color
-        top_counts_list = top_counts_flip.tolist()
-        pct_of_img = [round(((number / total_pixels) * 100), 4) for number in top_counts_list]
+    def convert_to_hex(self, colors):
+        # convert rgb values to color hexcodes
+        color_list = colors.tolist()
+        print(color_list)
+        hex_colors = [rgb2hex.rgb2hex(rgb) for rgb in color_list]
+        return hex_colors
 
-        #Put everything together into 1 dictionary
-        color_data = [
-            {'rgb': colors_flip[i], 'hex': hex_code[i], 'percentage': pct_of_img[i]}
-            for i in range(len(hex_code))
-        ]
-        return color_data
-
-test = ColorDetector(image=cv2.imread('static/test_2.jpg'), n=10)
-print(test.color_data)
+test = ColorDetector(image=cv2.imread('static/img/colors_test.png', cv2.IMREAD_COLOR_RGB), n=5)
+print(test.hex_colors)
 
 
