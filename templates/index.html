@@ -13,7 +13,7 @@
 	<div id="large-container">
 		<div id="image-container">
 			<h2 class="demo">Demo</h2>
-			<img src="../static/test_2.jpg" width="100%" alt="test image" id="ex-img"/>
+			<img src="../static/img/colors_test.png" alt="test image" id="ex-img"/>
 		</div>
 
 	<table class="table">
@@ -21,8 +21,8 @@
 		    <tr><th>Color</th><th>Color Code</th><th>Percentage</th></tr>
         </thead>
         <tbody>
-            {% for color in color_data %}
-		    <tr><td style="background-color:{{ color['hex'] }}"></td><td>{{color['hex']}}</td><td>{{color['percentage']}}</td></tr>
+            {% for hex, per in color_data.items() %}
+		    <tr><td style="background-color:{{ hex }}"></td><td>{{hex}}</td><td>{{per}}</td></tr>
             {% endfor %}
         </tbody>
 	</table>

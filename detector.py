@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib as plt
 import rgb2hex
 
 class ColorDetector:
@@ -37,7 +36,3 @@ class ColorDetector:
         color_freq = dict(zip(hex_c, frequency))
         color_freq = {color: float(freq) for color, freq in color_freq.items()}
         return color_freq
-
-test = ColorDetector(image=cv2.imread('static/img/colors_test.png', cv2.IMREAD_COLOR_RGB), n=5)
-
-
