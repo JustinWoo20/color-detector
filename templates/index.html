@@ -27,7 +27,7 @@
         </tbody>
 	</table>
 
-	<form action="/color_extract#demo" method="post" enctype="multipart/form-data">
+	<form action="{{ url_for('detected') }}" method="post" enctype="multipart/form-data">
 		<fieldset class="information">
 		<div>
 		<label class="label" for="imgFile">File to upload: <input type="file" name="imgFile" id="imgFile"  class="form-control"/></label>
@@ -36,39 +36,9 @@
 		<label class="label" for="num_results">Number of colors:</label>
 			<input type="text" name="num_results" id="num_results" value="10" class="form-control"/>
 		</div>
-		<div>
-		<label class="label" for="delta">delta:</label>
-			<input type="text" name="delta" id="delta" value="24" class="form-control"/>
-			(1-255)
-		</div>
-		<div class="radio">
-         <div class="form-group row">
-    <label class="col-sm-3">Reduce Brightness:</label>
-            <label>
-			<input type="radio" name="reduce_brightness" checked="checked" value="true" />Yes
-            <label>
-            </label>
-			<input type="radio" name="reduce_brightness"  value="false" />No
-            </label>
-		</div>
-		</div>
-		<div class="radio">
-         <div class="form-group row">
-    <label class="col-sm-3">Reduce gradient:</label>
-            <label>
-			<input type="radio" name="reduce_gradient" checked="checked" value="true" />Yes
-            </label>
-            <label>
-			<input type="radio" name="reduce_gradient"  value="false" />No
-            </label>
-		</div>
-		</div>
 		</fieldset>
 		<div class="buttons">
-			<input type="submit" name="submit" value="Run" />
-			<input type="hidden" name="action" value="run" />
-			<input type="hidden" name="ext" value="jpg" />
-			<input type="hidden" name="rand" value="" />
+			<button type="submit" name="submit" >Detect Colors</button>
 		</div>
 	</form>
     </div>
