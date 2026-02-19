@@ -10,5 +10,3 @@
 # Bytecode cache
 __pycache__/
 *.py[cod]
-
-test.py
